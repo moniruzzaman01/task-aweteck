@@ -1,7 +1,7 @@
 import React from "react";
 
 const Modal = ({ data }) => {
-  console.log(data);
+  //   console.log(data);
   return (
     <div>
       {/* <!-- Put this part before </body> tag --> */}

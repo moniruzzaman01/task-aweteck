@@ -26,7 +26,6 @@ const Home = () => {
         logout
       </button>
       {modal && <Modal data={modalData} />}
-      {/* <Modal data={modalData} /> */}
       <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {posts.slice(0, 20).map((post, key) => (
           <div key={key} className="card bg-neutral text-primary-content">
@@ -35,9 +34,9 @@ const Home = () => {
               <p>{post.body}</p>
               <div className="card-actions justify-end">
                 <label
-                  onClick={async () => {
-                    await setModal(true);
-                    await setModalData(post);
+                  onClick={() => {
+                    setModal(true);
+                    setModalData(post);
                   }}
                   htmlFor="detailsModal"
                   className="btn btn-outline btn-sm mt-5"
