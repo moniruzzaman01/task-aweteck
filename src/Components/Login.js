@@ -6,6 +6,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
 import SocialLogin from "./SocialLogin";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [authUser] = useAuthState(auth);
@@ -21,6 +22,9 @@ const Login = () => {
 
   useEffect(() => {
     if (authUser) {
+      toast(
+        `Login successfull. UserId: ${authUser.uid}, Name: ${authUser.displayName}, Email: ${authUser.email}, `
+      );
       navigate("/");
     }
   }, [authUser, navigate]);
@@ -34,12 +38,14 @@ const Login = () => {
           name="email"
           placeholder="Email"
           className="input input-bordered input-primary w-full max-w-lg mb-5"
+          required
         />
         <input
           type="password"
           name="pass"
           placeholder="Password"
           className="input input-bordered input-primary w-full max-w-lg mb-2"
+          required
         />
         <p className=" text-left mb-5 lg:pl-7">
           New Here?{" "}

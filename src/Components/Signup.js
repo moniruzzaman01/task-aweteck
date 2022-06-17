@@ -7,6 +7,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
 import SocialLogin from "./SocialLogin";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [authUser] = useAuthState(auth);
@@ -22,12 +23,14 @@ const Signup = () => {
     const pass = event.target.pass.value;
     console.log(name, email, pass);
     await createUserWithEmailAndPass(email, pass);
-    await updateProfile({ displayName: name });
+    updateProfile({ displayName: name });
   };
 
   useEffect(() => {
     if (authUser) {
-      console.log(authUser);
+      toast(
+        `SignUp successfull. UserId: ${authUser.uid}, Email: ${authUser.email}, `
+      );
       navigate("/");
     }
   }, [authUser, navigate]);
@@ -41,6 +44,7 @@ const Signup = () => {
           name="name"
           placeholder="Name"
           className="input input-bordered input-primary w-full max-w-lg mb-5"
+          required
         />
         {/* <input
           type="text"
@@ -53,12 +57,14 @@ const Signup = () => {
           name="email"
           placeholder="Email"
           className="input input-bordered input-primary w-full max-w-lg mb-5"
+          required
         />
         <input
           type="password"
           name="pass"
           placeholder="Password"
           className="input input-bordered input-primary w-full max-w-lg mb-2"
+          required
         />
         <p className=" text-left mb-5 lg:pl-7">
           Have an account?{" "}
@@ -66,7 +72,7 @@ const Signup = () => {
             Login
           </Link>
         </p>
-        <button className=" btn btn-primary w-full lg:w-1/2">Login</button>
+        <button className=" btn btn-primary w-full lg:w-1/2">SignUp</button>
       </form>
       <SocialLogin />
     </div>

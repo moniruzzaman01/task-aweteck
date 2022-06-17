@@ -4,6 +4,8 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./Components/Login";
 import RequireAuth from "./RequireAuth/RequireAuth";
 import Signup from "./Components/Signup";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

@@ -4,8 +4,12 @@ import { Navigate, useLocation } from "react-router-dom";
 import auth from "../firebase.init";
 
 const RequireAuth = ({ children }) => {
-  const [authUser] = useAuthState(auth);
+  const [authUser, loading] = useAuthState(auth);
   const location = useLocation();
+
+  if (loading) {
+    return;
+  }
 
   if (!authUser) {
     return <Navigate to="/login" state={{ from: location }} replace></Navigate>;

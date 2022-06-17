@@ -18,7 +18,7 @@ const SocialLogin = () => {
         onClick={handleGoogleLogin}
         className=" btn btn-secondary px-10 w-full lg:w-1/2"
       >
-        Google Login
+        Google Sign In
       </button>
     </div>
   );
